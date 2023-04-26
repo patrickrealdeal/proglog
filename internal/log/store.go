@@ -90,4 +90,5 @@ func (s *store) Close() error {
 		return err
 	}
 	return s.File.Close()
+
 }

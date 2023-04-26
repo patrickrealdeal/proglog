@@ -213,6 +213,14 @@ func (o *originReader) Read(p []byte) (int, error) {
 	return n, err
 }
 
-func (l *Log) newSegment(offset uint64) error {
+func (l *Log) newSegment(off uint64) error {
+	s, err := newSegment(l.Dir, off, l.Config)
+	if err != nil {
+		return err
+	}
+
+	l.segments = append(l.segments, s)
+	l.activeSegment = s
+
 	return nil
 }
